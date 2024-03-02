@@ -1,15 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function SettingsScreen() {
+export default function SettingsScreen({navigation}) {
   // Define an array of text items
   const items = [
-    "My Account",
-    "Terms & Conditions",
-    "Privacy Policy",
-    "Licenses",
-    "About us",
-    "Logout",
+    {label:"My Account", path:'accounts'},
+    {label:"Terms & Conditions", path:'accounts'},
+    {label:"Privacy Policy", path:'accounts'},
+    {label:"Licenses", path:'accounts'},
+    {label:"About us", path:'accounts'},
+    {label:"Logout", path:'accounts'},
     
   ];
 
@@ -17,10 +17,14 @@ export default function SettingsScreen() {
     <View style={styles.container}>
       {/* Map through the items array and render text and line for each item */}
       {items.map((item, index) => (
-        <View key={index} style={styles.itemContainer}>
-          <Text style={styles.itemText}>{item}</Text>
+        <TouchableOpacity
+        onPress={()=>navigation.navigate(item?.path)}
+      >
+        <View key={index} style={styles.itemContainer} >
+          <Text style={styles.itemText}>{item?.label}</Text>
           <View style={styles.line} />
         </View>
+      </TouchableOpacity>
       ))}
     </View>
   );
@@ -44,7 +48,7 @@ const styles = StyleSheet.create({
   line: {
     width: "100%",
     height: StyleSheet.hairlineWidth,
-    backgroundColor: "#000000",
+    backgroundColor: "#f6f6f6",
     },
     });
     

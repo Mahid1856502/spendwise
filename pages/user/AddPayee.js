@@ -1,11 +1,10 @@
 import React from "react";
 import {View } from "react-native";
 
-export default function Pay() {
+export default function AddPayee() {
 
   return (
-    <View >
-      Pay
+    <View>AddPayee
     </View>
   );
 }
