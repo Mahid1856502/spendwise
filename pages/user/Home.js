@@ -5,7 +5,7 @@ export default function Home({navigation}) {
   return (
     <View >
        <View style={styles.signUpContainer}>
-        <Text style={styles.signUpText}>Not have an account? </Text>
+        <Text style={styles.signUpText}>Home</Text>
         <TouchableOpacity
           onPress={() => {
             // Navigate to the registration screen

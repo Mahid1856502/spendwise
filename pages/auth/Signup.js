@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
+
 export default function Signup({ navigation }) {
   return (
     <View style={styles.container}>
@@ -25,7 +26,7 @@ export default function Signup({ navigation }) {
           style={styles.signInLink}
           onPress={() => {
             // Navigate to the Sign In screen
-            navigation.navigate('SignIn');
+            navigation.navigate('signin');
           }}
         >
           Sign in
@@ -34,6 +35,7 @@ export default function Signup({ navigation }) {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
