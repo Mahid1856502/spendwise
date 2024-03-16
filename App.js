@@ -5,6 +5,10 @@ import Signup from "./pages/auth/Signup";
 import TabNav from "./pages/user/TabNav";
 import ForgetPassword from "./pages/auth/ForgetPassword";
 import MyAccount from "./pages/settings/MyAccount";
+import TermsAndConditionsScreen from "./pages/settings/TermsAndConditionsScreen";
+import PrivacyPolicyScreen from "./pages/settings/PrivacyPolicyScreen";
+import LicensesScreen from "./pages/settings/LicensesScreen";
+import AboutUsScreen from "./pages/settings/AboutUsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +21,10 @@ export default function App() {
         <Stack.Screen name="tabnav" component={TabNav} options={{ headerShown: false }} />
         <Stack.Screen name="forgetpassword" component={ForgetPassword} options={{ headerShown: false }} />
         <Stack.Screen name="accounts" component={MyAccount} options={{ headerShown: false }} />
+        <Stack.Screen name="terms" component={TermsAndConditionsScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="privacy" component={PrivacyPolicyScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="licenses" component={LicensesScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="aboutUs" component={AboutUsScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, ScrollView, Text, View } from "react-native";
+import { StyleSheet, ScrollView, Text, View} from "react-native";
 
 export default function TermsAndConditionsScreen() {
   return (
@@ -58,13 +58,17 @@ export default function TermsAndConditionsScreen() {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    padding: 20,
+    padding: 0,
   },
   header: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
     textAlign: "center",
+    backgroundColor: '#2F80ED',
+    color: '#FFFFFF',
+    width:'100%',
+    height: 50,
   },
   content: {
     flex: 1,

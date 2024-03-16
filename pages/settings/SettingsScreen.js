@@ -5,12 +5,11 @@ export default function SettingsScreen({navigation}) {
   // Define an array of text items
   const items = [
     {label:"My Account", path:'accounts'},
-    {label:"Terms & Conditions", path:'accounts'},
-    {label:"Privacy Policy", path:'accounts'},
-    {label:"Licenses", path:'accounts'},
-    {label:"About us", path:'accounts'},
+    {label:"Terms & Conditions", path:'terms'},
+    {label:"Privacy Policy", path:'privacy'},
+    {label:"Licenses", path:'licenses'},
+    {label:"About us", path:'aboutUs'},
     {label:"Logout", path:'accounts'},
-    
   ];
 
   return (

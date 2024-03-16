@@ -8,24 +8,16 @@ export default function PrivacyPolicyScreen() {
       <View style={styles.content}>
         <Text style={styles.heading}>Scope and Application of Privacy Policy</Text>
         <Text style={styles.text}>
-          {" "}
           Your privacy is of utmost importance to us, which is why we take great
           care in handling your personal information. In accordance with Jazz's
           obligations under the Pakistan Telecommunication Act 1996, this privacy
           policy outlines how we collect, store, use, and disclose your personal
-          information. We aim to be transparent and accountable in our practices,
-          and we encourage you to read this notice as well as the Jazz Customer
-          Privacy Notice available at 
-          {" "}
-          <Text style={styles.link}>
-          https://www.jazz.com.pk/help/customer-privacy-policy/
-          </Text>{" "}
+          information. We aim to be transparent and accountable in our practices
           to fully comprehend the measures we take to safeguard your privacy.
         </Text>
         <Text style={styles.heading}>Information You Provide to Us</Text>
         <Text style={styles.text}>
-          {" "}
-          Jazz World collects your Personal Data, directly from you when you use
+          SpendWise collects your Personal Data, directly from you when you use
           our products or services through the application. This includes when
           you register, create an account, set up a profile, complete a form, or
           correspond with us.
@@ -54,13 +46,17 @@ export default function PrivacyPolicyScreen() {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    padding: 20,
+    padding: 0,
   },
   header: {
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 20,
+    marginBottom: 40,
     textAlign: "center",
+    backgroundColor: '#2F80ED',
+    color: '#FFFFFF',
+    width:'100%',
+    height: 50,
   },
   content: {
     flex: 1,

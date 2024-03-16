@@ -45,16 +45,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   header: {
-    width: 360,
-    height: 30,
-    marginTop: 29,
-    marginLeft: 18,
+    width: '100%',
+    height: 50,
+    marginTop: 0,
+    marginLeft: 0,
     marginBottom: 0,
+    backgroundColor: '#2F80ED',
   },
   headerText: {
     fontSize: 24,
     fontWeight: "bold",
-    textAlign:"center"
+    textAlign:"center",
+    color: '#FFFFFF',
   },
   image: {
     width: 420,
