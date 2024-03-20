@@ -1,10 +1,10 @@
-import {StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import RoundSearchBar from "../components/SearchBar";
 
-export default function Home({navigation}) {
-
+export default function Home({ navigation }) {
   return (
-    <View >
-       <View style={styles.signUpContainer}>
+    <View>
+      <View style={styles.signUpContainer}>
         <Text style={styles.signUpText}>Home</Text>
         <TouchableOpacity
           onPress={() => {
@@ -14,6 +14,9 @@ export default function Home({navigation}) {
         >
           <Text style={styles.signUpLink}>Pay</Text>
         </TouchableOpacity>
+      </View>
+      <View>
+        <RoundSearchBar title={'Search here'}/>
       </View>
     </View>
   );
