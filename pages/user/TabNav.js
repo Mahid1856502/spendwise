@@ -3,9 +3,9 @@ import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image } from "react-native";
 import Home from "./Home";
-import Pay from "./Pay";
+import Pay from "../Pay/AllPayee";
 import SettingsScreen from "../settings/SettingsScreen";
-import AddPayee from "./AddPayee";
+import AddPayee from "../Pay/AddPayee";
 import SaveMoney from "./SaveMoney";
 
 const Tab = createBottomTabNavigator();
@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 const CustomFooter = ({ navigation }) => {
   return (
     <View style={styles.footer}>
-      <TouchableOpacity onPress={() => navigation.navigate("home")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Home")}>
         <Image source={require("../../assets/home.png")} style={styles.icon} />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("pay")}>
@@ -47,9 +47,25 @@ const CustomFooter = ({ navigation }) => {
 
 const TabNav = () => {
   return (
-    <Tab.Navigator tabBar={(props) => <CustomFooter {...props} />}>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="pay" component={Pay} />
+    <Tab.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#2f80ed",
+        },
+        headerTintColor: "#fff",
+      }}
+      tabBar={(props) => <CustomFooter {...props} />}
+    >
+      <Tab.Screen
+        name="Home"
+        options={{ title: "Spendwise" }}
+        component={Home}
+      />
+      <Tab.Screen
+        name="pay"
+        options={{ title: "All Payees" }}
+        component={Pay}
+      />
       <Tab.Screen name="add" component={AddPayee} />
       <Tab.Screen name="save" component={SaveMoney} />
       <Tab.Screen name="settings" component={SettingsScreen} />

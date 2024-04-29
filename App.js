@@ -5,6 +5,7 @@ import Signup from "./pages/auth/Signup";
 import TabNav from "./pages/user/TabNav";
 import ForgetPassword from "./pages/auth/ForgetPassword";
 import MyAccount from "./pages/settings/MyAccount";
+import { StyleSheet } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
@@ -12,23 +13,32 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="signin" component={Signin} options={{ headerShown: false }} />
-        <Stack.Screen name="signup" component={Signup} options={{ headerShown: false }} />
-        <Stack.Screen name="tabnav" component={TabNav} options={{ headerShown: false }} />
-        <Stack.Screen name="forgetpassword" component={ForgetPassword} options={{ headerShown: false }} />
-        <Stack.Screen name="accounts" component={MyAccount} options={{ headerShown: false }} />
+        <Stack.Screen
+          name="signin"
+          component={Signin}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="signup"
+          component={Signup}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="tabnav"
+          component={TabNav}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="forgetpassword"
+          component={ForgetPassword}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="accounts"
+          component={MyAccount}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-//<Stack.Screen name="ForgetPassword" component={Forgetpassword} options={{ headerShown: false }} />
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });

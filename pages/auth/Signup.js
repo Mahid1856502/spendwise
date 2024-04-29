@@ -1,21 +1,21 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import InputField from "../components/InputField";
 
 export default function Signup({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome onboard!</Text>
       <Text style={styles.subtitle}>Let's help you meet up task.</Text>
-      <TextInput style={styles.input} placeholder="Enter your full name" />
-      <TextInput style={styles.input} placeholder="Enter your email" />
-      <TextInput style={styles.input} placeholder="Enter password" secureTextEntry={true} />
-      <TextInput style={styles.input} placeholder="Confirm password" secureTextEntry={true} />
+      <InputField placeholder="Enter your full name" />
+      <InputField placeholder="Enter your email" />
+      <InputField placeholder="Enter password" secureTextEntry={true} />
+      <InputField placeholder="Confirm password" secureTextEntry={true} />
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
           // Navigate to the Sign In screen
-          navigation.navigate('tabnav');
+          navigation.navigate("tabnav");
         }}
       >
         <Text style={styles.buttonText}>Register</Text>
@@ -26,7 +26,7 @@ export default function Signup({ navigation }) {
           style={styles.signInLink}
           onPress={() => {
             // Navigate to the Sign In screen
-            navigation.navigate('signin');
+            navigation.navigate("signin");
           }}
         >
           Sign in
@@ -35,7 +35,6 @@ export default function Signup({ navigation }) {
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

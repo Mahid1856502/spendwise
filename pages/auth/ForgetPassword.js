@@ -1,12 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, Image, TouchableOpacity, View } from "react-native";
-import forgotImg from './../../assets/forgotpassword.png'
+import { StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
+import forgotImg from "./../../assets/forgotpassword.png";
+import InputField from "../components/InputField";
 export default function ForgetPassword() {
   return (
     <View style={styles.container}>
       <Image source={forgotImg} style={styles.image} />
-      <TextInput style={styles.input} placeholder="Enter new password" secureTextEntry={true} />
-      <TextInput style={styles.input} placeholder="Confirm password" secureTextEntry={true} />
+      <InputField placeholder="Enter new password" secureTextEntry={true} />
+      <InputField placeholder="Confirm password" secureTextEntry={true} />
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Change Password</Text>
       </TouchableOpacity>

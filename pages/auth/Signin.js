@@ -1,7 +1,8 @@
 import React from "react";
-import { StyleSheet, Text,Image, TextInput, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
 
 import SignInImage from "./../../assets/signin.png";
+import InputField from "../components/InputField";
 
 export default function Signin({ navigation }) {
   const handleForgetPassword = () => {
@@ -12,15 +13,15 @@ export default function Signin({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>Welcome Back!</Text>
       <Image source={SignInImage} style={styles.image} />
-      <TextInput style={styles.input} placeholder="Enter your name" />
-      <TextInput style={styles.input} placeholder="Enter password" secureTextEntry={true} />
+      <InputField placeholder="Enter your name" />
+      <InputField placeholder="Enter password" secureTextEntry={true} />
       <TouchableOpacity onPress={handleForgetPassword}>
         <Text style={styles.forgetPasswordLink}>Forgot Password?</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          navigation.navigate('tabnav')
+          navigation.navigate("tabnav");
         }}
       >
         <Text style={styles.buttonText}>Login</Text>
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: "#f4eaea",
   },
-  
+
   button: {
     width: "80%",
     backgroundColor: "#2F80ED",

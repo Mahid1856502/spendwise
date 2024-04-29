@@ -1,42 +1,82 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import RoundSearchBar from "../components/SearchBar";
+import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import { IMAGES } from "../../assets/images";
 
-export default function Home({ navigation }) {
+const windowWidth = Dimensions.get("window").width;
+
+export default function Home() {
   return (
-    <View>
-      <View style={styles.signUpContainer}>
-        <Text style={styles.signUpText}>Home</Text>
-        <TouchableOpacity
-          onPress={() => {
-            // Navigate to the registration screen
-            navigation.navigate("signup");
-          }}
-        >
-          <Text style={styles.signUpLink}>Pay</Text>
-        </TouchableOpacity>
+    <View style={styles.container}>
+      <View style={styles.info}>
+        <View style={styles.flexRow}>
+          <Image source={IMAGES.USER} style={styles.avatar} />
+          <View>
+            <Text style={styles.subtitle}>Good After Noon!</Text>
+            <Text style={styles.heading}>Mahid</Text>
+          </View>
+        </View>
+        <View style={styles.amount}>
+          <Text style={styles.subtitle}>Rs. </Text>
+          <Text style={styles.heading}>23,480</Text>
+        </View>
       </View>
-      <View>
-        <RoundSearchBar title={'Search here'}/>
+      <View style={styles.assetContainer}>
+        <Image
+          source={IMAGES.DASHBOARD}
+          style={styles.asset}
+          resizeMode="contain"
+        />
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  signUpContainer: {
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "start",
+    justifyContent: "flex-start",
+  },
+  info: {
+    backgroundColor: "#2f80ed",
+    width: "100%",
+    padding: 15,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  flexRow: {
     flexDirection: "row",
-    marginTop: 10,
+    alignItems: "flex-start",
   },
-  signUpText: {
-    fontSize: 14,
+  heading: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: 500,
   },
-  signUpLink: {
-    color: "#265FAD",
-    fontSize: 14,
+  subtitle: {
+    color: "#fff",
+    fontSize: 12,
   },
-  forgetPasswordLink: {
-    marginTop: 15,
-    fontSize: 14,
-    color: "#265FAD",
+  avatar: {
+    borderRadius: 50,
+    width: 40,
+    height: 40,
+    marginRight: 10,
+  },
+  amount: {
+    justifyContent: "flex-end",
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "baseline",
+  },
+  asset: {
+    width: windowWidth * 0.9, // Adjust the percentage as needed
+    aspectRatio: 1,
+  },
+  assetContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
   },
 });

@@ -1,46 +1,43 @@
 import React from "react";
-import { View, TextInput, StyleSheet, Image } from "react-native";
+import { View, TextInput, StyleSheet } from "react-native";
 import { FaSearch } from "react-icons/fa";
 
-const RoundSearchBar = ({ title }) => {
+const RoundSearchBar = ({ placeholder }) => {
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.container}>
-        <FaSearch />
-        <TextInput
-          style={styles.searchInput}
-          placeholder={title}
-          placeholderTextColor="#999"
-        />
-      </View>
+    <View style={styles.container}>
+      <FaSearch style={styles.searchIcon} />
+      <TextInput
+        style={styles.searchInput}
+        placeholder={placeholder}
+        placeholderTextColor="#999"
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    paddingHorizontal: 20,
-    marginTop: 50, // Adjust this value to position the search bar lower
-  },
   container: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderRadius: 40,
-    borderWidth: 4,
-    borderColor: "#ccc",
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    position: "relative",
+    paddingVertical: 15,
   },
   searchInput: {
-    flex: 8,
-    color: "#333",
-    paddingLeft: 40, // Adjust this value to position the icon
+    width: "100%",
+    height: 40,
+    borderRadius: 20,
+    paddingLeft: 40,
+    color: "#a9b7ba",
+    fontWeight: 400,
+    backgroundColor: "#f0eded",
+    borderWidth: 0,
+    outlineStyle: "none",
   },
   searchIcon: {
+    color: "#a9b7ba",
     position: "absolute",
-    left: 15, // Adjust this value to position the icon
-    width: 20,
-    height: 20,
+    left: 14,
+    top: 27,
+    width: 17,
+    height: 17,
   },
 });
 

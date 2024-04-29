@@ -1,5 +1,13 @@
 import React from "react";
-import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
+import InputField from "../components/InputField";
 
 export default function MyAccount() {
   return (
@@ -19,14 +27,14 @@ export default function MyAccount() {
       {/* Full Name Input */}
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Full Name</Text>
-        <TextInput style={styles.input}  />
+        <InputField />
         <View style={styles.line} />
       </View>
 
       {/* Email Input */}
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Email</Text>
-        <TextInput style={styles.input}  />
+        <InputField />
         <View style={styles.line} />
       </View>
 
@@ -54,7 +62,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 24,
     fontWeight: "bold",
-    textAlign:"center"
+    textAlign: "center",
   },
   image: {
     width: 420,
@@ -69,7 +77,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 5,
   },
-  
+
   line: {
     width: "100%",
     height: 1,
