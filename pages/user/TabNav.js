@@ -7,6 +7,9 @@ import Pay from "../Pay/AllPayee";
 import SettingsScreen from "../settings/SettingsScreen";
 import AddPayee from "../Pay/AddPayee";
 import SaveMoney from "./SaveMoney";
+import Categories from "../Categories/AllCategories";
+import Transfer from "../Pay/Transfer";
+import PaymentSent from "../Pay/PaymentSent";
 
 const Tab = createBottomTabNavigator();
 
@@ -69,6 +72,21 @@ const TabNav = () => {
       <Tab.Screen name="add" component={AddPayee} />
       <Tab.Screen name="save" component={SaveMoney} />
       <Tab.Screen name="settings" component={SettingsScreen} />
+      <Tab.Screen
+        name="categories"
+        options={{ title: "All Categories" }}
+        component={Categories}
+      />
+      <Tab.Screen
+        name="transfer"
+        options={{ title: "Send Amount" }}
+        component={Transfer}
+      />
+      <Tab.Screen
+        name="paymentSent"
+        options={{ title: "Transaction Receipt" }}
+        component={PaymentSent}
+      />
     </Tab.Navigator>
   );
 };

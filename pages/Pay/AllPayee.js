@@ -3,27 +3,27 @@ import { View, StyleSheet, Text } from "react-native";
 import RoundSearchBar from "../components/SearchBar";
 import GenericList from "../components/GenericList";
 
-export default function Pay() {
+export default function Pay({ navigation }) {
   const payees = [
     {
       label: "Usman Riaz",
-      path: "accounts",
+      path: "categories",
     },
     {
       label: "Abbas Ali Kazmi",
-      path: "accounts",
+      path: "categories",
     },
     {
       label: "Benish Asghar",
-      path: "accounts",
+      path: "categories",
     },
     {
       label: "Mahnoor Tufail",
-      path: "accounts",
+      path: "categories",
     },
     {
       label: "Mahid Shamshad",
-      path: "accounts",
+      path: "categories",
     },
   ];
   return (
@@ -31,7 +31,7 @@ export default function Pay() {
       <Text style={styles.heading}>Transfer to Spendwise</Text>
       <RoundSearchBar placeholder={"Search payees"} />
       <Text style={styles.subtitle}>Select payee to send amount</Text>
-      <GenericList data={payees} />
+      <GenericList data={payees} navigation={navigation} />
     </View>
   );
 }

@@ -3,35 +3,27 @@ import { View, StyleSheet, Text } from "react-native";
 import RoundSearchBar from "../components/SearchBar";
 import GenericList from "../components/GenericList";
 
-export default function Categories() {
+export default function Categories({ navigation }) {
   const payees = [
     {
-      label: "Usman Riaz",
-      path: "accounts",
+      label: "Medical Health",
+      path: "transfer",
     },
     {
-      label: "Abbas Ali Kazmi",
-      path: "accounts",
+      label: "Education",
+      path: "transfer",
     },
     {
-      label: "Benish Asghar",
-      path: "accounts",
-    },
-    {
-      label: "Mahnoor Tufail",
-      path: "accounts",
-    },
-    {
-      label: "Mahid Shamshad",
-      path: "accounts",
+      label: "Entertainment",
+      path: "transfer",
     },
   ];
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Transfer to Spendwise</Text>
-      <RoundSearchBar placeholder={"Search payees"} />
-      <Text style={styles.subtitle}>Select payee to send amount</Text>
-      <GenericList data={payees} />
+      <RoundSearchBar placeholder={"Search categories"} />
+      <Text style={styles.subtitle}>Select categories to send amount</Text>
+      <GenericList data={payees} navigation={navigation} />
     </View>
   );
 }

@@ -5,8 +5,11 @@ export default function GenericList({ data, navigation }) {
   return (
     <View style={styles.container}>
       {data?.map((item, index) => (
-        <TouchableOpacity onPress={() => navigation.navigate(item?.path)}>
-          <View key={index} style={styles.itemContainer}>
+        <TouchableOpacity
+          key={index}
+          onPress={() => navigation.navigate(item?.path)}
+        >
+          <View style={styles.itemContainer}>
             <View style={styles.flexRow}>
               {item?.icon}
               <Text style={styles.itemText}>{item?.label}</Text>
