@@ -7,9 +7,12 @@ import Pay from "../Pay/AllPayee";
 import SettingsScreen from "../settings/SettingsScreen";
 import AddPayee from "../Pay/AddPayee";
 import SaveMoney from "./SaveMoney";
-import Categories from "../Categories/AllCategories";
 import Transfer from "../Pay/Transfer";
 import PaymentSent from "../Pay/PaymentSent";
+import { Root } from "../Drawer/root";
+import AllCategories from "../Categories/AllCategories";
+import AddUpdate from "../Categories/AddUpdate";
+import AddUpdateGoal from "../Goals/AddUpdate";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,13 +29,15 @@ const CustomFooter = ({ navigation }) => {
           style={styles.icon}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("add")}>
+      <TouchableOpacity onPress={() => navigation.navigate("addPayee")}>
         <Image
           source={require("../../assets/Vector (1).png")}
           style={styles.icon}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("save")}>
+      <TouchableOpacity
+      // onPress={() => navigation.navigate("save")}
+      >
         <Image
           source={require("../../assets/Vector (2).png")}
           style={styles.icon}
@@ -60,22 +65,37 @@ const TabNav = () => {
       tabBar={(props) => <CustomFooter {...props} />}
     >
       <Tab.Screen
-        name="Home"
-        options={{ title: "Spendwise" }}
-        component={Home}
+        name="root"
+        options={{ headerShown: false }}
+        component={Root}
       />
+      {/* <Tab.Screen name="Home" component={Home} /> */}
       <Tab.Screen
         name="pay"
         options={{ title: "All Payees" }}
         component={Pay}
       />
-      <Tab.Screen name="add" component={AddPayee} />
+      <Tab.Screen
+        name="addPayee"
+        options={{ title: "Add Payees" }}
+        component={AddPayee}
+      />
       <Tab.Screen name="save" component={SaveMoney} />
       <Tab.Screen name="settings" component={SettingsScreen} />
       <Tab.Screen
         name="categories"
         options={{ title: "All Categories" }}
-        component={Categories}
+        component={AllCategories}
+      />
+      <Tab.Screen
+        name="addUpdateCategory"
+        options={{ title: "Categories" }}
+        component={AddUpdate}
+      />
+      <Tab.Screen
+        name="addUpdateGoal"
+        options={{ title: "Goals" }}
+        component={AddUpdateGoal}
       />
       <Tab.Screen
         name="transfer"

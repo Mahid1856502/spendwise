@@ -1,41 +1,32 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, TextInput } from "react-native";
-import GenericButton from "../components/Button";
-import { IoArrowForward } from "react-icons/io5";
 import { FaRegCircleCheck } from "react-icons/fa6";
 
 const PaymentSent = () => {
-  const [amount, setAmount] = useState("");
   return (
     <View style={styles.container}>
-      <FaRegCircleCheck color="green" size={55} />
+      <FaRegCircleCheck color="green" size={75} />
       <Text style={styles.heading}>Transaction Successful</Text>
       <br />
-      <View style={styles.amountContainer}>
-        <View style={styles.flexRow}>
-          <Text style={styles.heading}>Rs. </Text>
-          <TextInput
-            placeholderTextColor="#a9b7ba"
-            style={styles.input}
-            placeholder="Enter Amount"
-            keyboardType="numeric"
-            value={amount}
-            onChange={(e) =>
-              setAmount(e?.target?.value?.replace(/[^0-9]/g, ""))
-            }
-          />
-        </View>
-        <Text style={styles.subtitle}>
-          You have a daily debit limit of Rs. 45,000 left{" "}
-        </Text>
+      <Text style={styles.subtitle}>
+        Syed Abbas Ali Kazmi
+        <br />
+        2382491890
+      </Text>
+      <br />
+      <Text style={styles.subtitle}>Money Transferred</Text>
+      <View style={styles.flexRow}>
+        <Text style={styles.prefix}>Rs. </Text>
+        <Text style={styles.heading}>24,000</Text>
       </View>
-      <View style={styles.buttonWrapper}>
-        <GenericButton navigation={navigation} button={styles.button}>
-          <Text style={styles.buttonContent}>
-            Send <IoArrowForward color="white" />
-          </Text>
-        </GenericButton>
-      </View>
+      <Text style={styles.subtitle}>to</Text>
+      <Text style={styles.subtitle}>
+        Mahid Ali
+        <br />
+        12239891890
+      </Text>
+      <br />
+      <Text style={styles.subtitle}>5 May 2024 05:32 PM</Text>
     </View>
   );
 };
@@ -48,15 +39,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: 15,
     alignItems: "center",
+    justifyContent: "center",
   },
   icon: { color: "#a9b7ba" },
   subtitle: {
     color: "#000",
-    fontSize: 12,
+    fontSize: 14,
+    textAlign: "center",
+  },
+  prefix: {
+    fontSize: 16,
+    textAlign: "center",
+    fontWeight: 500,
   },
   heading: {
     color: "#000",
-    fontSize: 16,
+    fontSize: 26,
     fontWeight: 500,
     marginBottom: 10,
     marginTop: 10,

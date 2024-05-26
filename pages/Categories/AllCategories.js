@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from "react-native";
 import RoundSearchBar from "../components/SearchBar";
 import GenericList from "../components/GenericList";
 
-export default function Categories({ navigation }) {
+export default function AllCategories({ navigation }) {
   const payees = [
     {
       label: "Medical Health",

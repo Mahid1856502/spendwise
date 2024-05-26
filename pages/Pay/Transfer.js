@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, TextInput } from "react-native";
 import GenericButton from "../components/Button";
-import { IoArrowForward } from "react-icons/io5";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function Transfer({ navigation }) {
   const payees = [
@@ -52,14 +52,14 @@ export default function Transfer({ navigation }) {
         </Text>
       </View>
       <View style={styles.buttonWrapper}>
-        <GenericButton navigation={navigation} button={styles.button}>
+        <GenericButton button={styles.button}>
           <Text
             style={styles.buttonContent}
             onPress={() => {
               navigation.navigate("paymentSent");
             }}
           >
-            Send <IoArrowForward color="white" />
+            Send <FaArrowRight color="white" size={18} />
           </Text>
         </GenericButton>
       </View>
@@ -121,5 +121,6 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "50%",
+    marginTop: 30,
   },
 });

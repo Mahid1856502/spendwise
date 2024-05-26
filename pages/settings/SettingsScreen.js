@@ -15,7 +15,7 @@ export default function SettingsScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <GenericList data={items} />
+      <GenericList data={items} navigation={navigation} />
     </View>
   );
 }

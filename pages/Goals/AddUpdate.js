@@ -2,19 +2,18 @@ import React from "react";
 import { StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
 import UnderlineInput from "../components/UnderlineInput";
 
-export default function AddPayee() {
+export default function AddUpdate({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Add Payee</Text>
-      <UnderlineInput placeholder="Enter payee name" />
-      <UnderlineInput placeholder="Enter account no." />
+      <Text style={styles.title}>Add Goal</Text>
+      <UnderlineInput placeholder="Enter goal" />
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          navigation.navigate("tabnav");
+          navigation.navigate("goalList");
         }}
       >
-        <Text style={styles.buttonText}>Add Payee</Text>
+        <Text style={styles.buttonText}>Add Goal</Text>
       </TouchableOpacity>
     </View>
   );

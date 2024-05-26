@@ -1,14 +1,9 @@
 import React from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const GenericButton = ({ children, navigation, button }) => {
+const GenericButton = ({ children, onPress, button }) => {
   return (
-    <TouchableOpacity
-      style={[styles.button, button]}
-      onPress={() => {
-        navigation.navigate("tabnav");
-      }}
-    >
+    <TouchableOpacity style={[styles.button, button]} onPress={onPress}>
       <Text style={styles.buttonText}>{children}</Text>
     </TouchableOpacity>
   );
@@ -21,10 +16,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#2F80ED",
     padding: 10,
     borderRadius: 20,
-    marginTop: 90,
   },
   buttonText: {
     color: "#fff",
     fontSize: 16,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

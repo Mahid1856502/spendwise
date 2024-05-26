@@ -5,7 +5,6 @@ import Signup from "./pages/auth/Signup";
 import TabNav from "./pages/user/TabNav";
 import ForgetPassword from "./pages/auth/ForgetPassword";
 import MyAccount from "./pages/settings/MyAccount";
-import { StyleSheet } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
