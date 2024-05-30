@@ -1,19 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
 import UnderlineInput from "../components/UnderlineInput";
+import { FaPlus } from "react-icons/fa";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { addCategory } from "../../services/categories";
 
 export default function AddUpdate({ navigation }) {
+  const [categoryName, setCategoryName] = useState("");
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: addCategory,
+    onSuccess: () => {
+      // Invalidate and refetch categories
+      queryClient.invalidateQueries("categories");
+      navigation.navigate("categoryList");
+    },
+  });
+
+  const handleAddCategory = () => {
+    if (categoryName.trim()) {
+      mutation.mutate({ name: categoryName });
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Add Category</Text>
-      <UnderlineInput placeholder="Enter category" />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          navigation.navigate("categoryList");
-        }}
-      >
-        <Text style={styles.buttonText}>Add Category</Text>
+      <UnderlineInput
+        placeholder="Enter category"
+        value={categoryName}
+        onChangeText={setCategoryName}
+      />
+      <TouchableOpacity style={styles.button} onPress={handleAddCategory}>
+        <Text style={styles.buttonText}>
+          <FaPlus color="white" style={{ marginRight: "5px" }} />
+          Add
+        </Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,10 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
-
-import SignInImage from "./../../assets/signin.png";
 import InputField from "../components/InputField";
+import { useMutation } from "@tanstack/react-query";
+import { signin } from "../../services/auth"; // Make sure to define this function
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import SignInImage from "../../assets/signin.png";
 
 export default function Signin({ navigation }) {
+  const [formData, setFormData] = useState({
+    email: "usman@gmail.com",
+    password: "Usman1234$",
+    errors: {},
+  });
+
+  const mutation = useMutation({
+    mutationFn: signin,
+    onSuccess: async (response) => {
+      // Store user data in AsyncStorage
+      try {
+        await AsyncStorage.setItem(
+          "spendwise_user",
+          JSON.stringify(response?.data?.user)
+        );
+        await AsyncStorage.setItem("accessToken", response?.data?.accessToken);
+      } catch (error) {
+        console.error("Error saving data", error);
+      }
+
+      navigation.navigate("tabnav");
+    },
+    onError: (error) => {
+      setFormData((prevState) => ({
+        ...prevState,
+        errors: { api: "Invalid Credentials" },
+      }));
+    },
+  });
+
+  const handleInputChange = (name, value) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+      errors: { ...prevState.errors, [name]: null },
+    }));
+  };
+
+  const handleLogin = () => {
+    const { email, password } = formData;
+
+    let errors = {};
+    if (!email) errors.email = "Email is required";
+    if (!password) errors.password = "Password is required";
+
+    if (Object.keys(errors).length > 0) {
+      setFormData((prevState) => ({ ...prevState, errors }));
+      return;
+    }
+
+    const payload = { email, password };
+    mutation.mutate(payload);
+  };
+
   const handleForgetPassword = () => {
     navigation.navigate("forgetpassword");
   };
@@ -13,24 +69,36 @@ export default function Signin({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>Welcome Back!</Text>
       <Image source={SignInImage} style={styles.image} />
-      <InputField placeholder="Enter your name" />
-      <InputField placeholder="Enter password" secureTextEntry={true} />
+      <InputField
+        placeholder="Enter your email"
+        value={formData.email}
+        onChangeText={(value) => handleInputChange("email", value)}
+      />
+      {formData.errors.email && (
+        <Text style={styles.errorText}>{formData.errors.email}</Text>
+      )}
+      <InputField
+        placeholder="Enter password"
+        secureTextEntry={true}
+        value={formData.password}
+        onChangeText={(value) => handleInputChange("password", value)}
+      />
+      {formData.errors.password && (
+        <Text style={styles.errorText}>{formData.errors.password}</Text>
+      )}
+      {formData.errors.api && (
+        <Text style={styles.errorText}>{formData.errors.api}</Text>
+      )}
       <TouchableOpacity onPress={handleForgetPassword}>
         <Text style={styles.forgetPasswordLink}>Forgot Password?</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          navigation.navigate("tabnav");
-        }}
-      >
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
       <View style={styles.signUpContainer}>
         <Text style={styles.signUpText}>Not have an account? </Text>
         <TouchableOpacity
           onPress={() => {
-            // Navigate to the registration screen
             navigation.navigate("signup");
           }}
         >
@@ -53,13 +121,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 20,
   },
-
   image: {
-    width: 100, // Adjust width as needed
-    height: 100, // Adjust height as needed
+    width: 100,
+    height: 100,
     marginBottom: 20,
   },
-
   input: {
     width: "80%",
     height: 40,
@@ -70,7 +136,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: "#f4eaea",
   },
-
   button: {
     width: "80%",
     backgroundColor: "#2F80ED",
@@ -98,5 +163,11 @@ const styles = StyleSheet.create({
     marginTop: 15,
     fontSize: 14,
     color: "#265FAD",
+  },
+  errorText: {
+    color: "red",
+    fontSize: 12,
+    marginTop: 5,
+    marginBottom: 10,
   },
 });

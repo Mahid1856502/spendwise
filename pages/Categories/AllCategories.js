@@ -2,28 +2,35 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import RoundSearchBar from "../components/SearchBar";
 import GenericList from "../components/GenericList";
+import { ActivityIndicator } from "react-native-web";
+import { fetchCategories } from "../../services/categories";
+import { useQuery } from "@tanstack/react-query";
 
 export default function AllCategories({ navigation }) {
-  const payees = [
-    {
-      label: "Medical Health",
+  const { data: categories, isLoading } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+  });
+
+  const formattedCategories =
+    categories?.map((category) => ({
+      label: category.name,
       path: "transfer",
-    },
-    {
-      label: "Education",
-      path: "transfer",
-    },
-    {
-      label: "Entertainment",
-      path: "transfer",
-    },
-  ];
+    })) || [];
+
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Transfer to Spendwise</Text>
       <RoundSearchBar placeholder={"Search categories"} />
       <Text style={styles.subtitle}>Select categories to send amount</Text>
-      <GenericList data={payees} navigation={navigation} />
+      <GenericList data={formattedCategories} navigation={navigation} />
     </View>
   );
 }

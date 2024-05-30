@@ -10,7 +10,7 @@ export default function SettingsScreen({ navigation }) {
     { label: "Privacy Policy", path: "accounts" },
     { label: "Licenses", path: "accounts" },
     { label: "About us", path: "accounts" },
-    { label: "Logout", path: "accounts" },
+    { label: "Logout", path: "signin" },
   ];
 
   return (

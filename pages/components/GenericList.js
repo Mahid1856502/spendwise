@@ -1,14 +1,24 @@
 import React from "react";
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import GenericButton from "./Button";
+import { FaTrash } from "react-icons/fa";
 
-export default function GenericList({ data, navigation, editable, onEdit }) {
+export default function GenericList({
+  data,
+  navigation,
+  editable,
+  onEdit,
+  deleteable,
+  onDelete,
+}) {
   return (
     <View style={styles.container}>
       {data?.map((item, index) => (
         <TouchableOpacity
           key={index}
-          onPress={() => navigation.navigate(item?.path || "")}
+          onPress={() =>
+            navigation.navigate(item?.path || "", { data: item.id })
+          }
         >
           <View style={styles.itemContainer}>
             <View style={styles.rowWrapper}>
@@ -16,17 +26,24 @@ export default function GenericList({ data, navigation, editable, onEdit }) {
                 {item?.icon}
                 <Text style={styles.itemText}>{item?.label}</Text>
               </View>
-              {editable && (
-                <View style={styles.flexRow}>
+              <View style={styles.flexRow}>
+                {editable && (
                   <Text
                     style={{ fontSize: 14, marginRight: 5, color: "#2F80ED" }}
                     onPress={onEdit}
                   >
                     Edit
                   </Text>
-                  <Text style={{ fontSize: 14, color: "#DD1717" }}>Delete</Text>
-                </View>
-              )}
+                )}
+                {deleteable && (
+                  <Text
+                    style={{ fontSize: 14, color: "#DD1717" }}
+                    onPress={() => onDelete(item?.id)}
+                  >
+                    <FaTrash />
+                  </Text>
+                )}
+              </View>
             </View>
             <View style={styles.line} />
           </View>

@@ -1,12 +1,19 @@
 import { StyleSheet, TextInput } from "react-native";
 // import { gloablStyles } from "../../styles/globalStyles";
 
-const InputField = ({ placeholder = "", secureTextEntry = false }) => {
+const InputField = ({
+  placeholder = "",
+  secureTextEntry = false,
+  value,
+  onChangeText,
+}) => {
   return (
     <TextInput
       style={styles.input}
       placeholder={placeholder}
       secureTextEntry={secureTextEntry}
+      value={value}
+      onChangeText={onChangeText}
     />
   );
 };

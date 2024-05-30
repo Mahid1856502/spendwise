@@ -1,32 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, TextInput } from "react-native";
 import { FaRegCircleCheck } from "react-icons/fa6";
+import { useQuery } from "@tanstack/react-query";
+import { fetchUserById } from "../../services/auth";
+import { getUserData } from "../../utils/helper";
 
-const PaymentSent = () => {
+const PaymentSent = ({ route }) => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userData = await getUserData();
+      setUser(userData);
+    };
+
+    fetchData();
+  }, []);
+
+  const data = route?.params;
+  console.log("data", data);
+
+  const { data: receiver } = useQuery({
+    queryKey: ["user"],
+    queryFn: () => fetchUserById(data?.data?.receiverId),
+  });
+
+  console.log("user", user);
+  console.log("receiver", receiver);
+
   return (
     <View style={styles.container}>
       <FaRegCircleCheck color="green" size={75} />
       <Text style={styles.heading}>Transaction Successful</Text>
       <br />
       <Text style={styles.subtitle}>
-        Syed Abbas Ali Kazmi
+        {user?.name}
         <br />
-        2382491890
+        {/* 2382491890 */}
       </Text>
       <br />
       <Text style={styles.subtitle}>Money Transferred</Text>
       <View style={styles.flexRow}>
         <Text style={styles.prefix}>Rs. </Text>
-        <Text style={styles.heading}>24,000</Text>
+        <Text style={styles.heading}>
+          {data?.data?.amount?.toLocaleString()}
+        </Text>
       </View>
       <Text style={styles.subtitle}>to</Text>
       <Text style={styles.subtitle}>
-        Mahid Ali
+        {receiver?.name}
         <br />
-        12239891890
+        {/* 12239891890 */}
       </Text>
       <br />
-      <Text style={styles.subtitle}>5 May 2024 05:32 PM</Text>
+      {/* <Text style={styles.subtitle}>5 May 2024 05:32 PM</Text> */}
     </View>
   );
 };

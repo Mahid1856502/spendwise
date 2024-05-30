@@ -1,9 +1,21 @@
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { IMAGES } from "../../assets/images";
+import { useEffect, useState } from "react";
+import { getUserData } from "../../utils/helper";
 
 const windowWidth = Dimensions.get("window").width;
 
 export default function Home() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userData = await getUserData();
+      setUser(userData);
+    };
+
+    fetchData();
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.info}>
@@ -11,12 +23,14 @@ export default function Home() {
           <Image source={IMAGES.USER} style={styles.avatar} />
           <View>
             <Text style={styles.subtitle}>Good After Noon!</Text>
-            <Text style={styles.heading}>Mahid</Text>
+            <Text style={styles.heading}>{user?.name}</Text>
           </View>
         </View>
         <View style={styles.amount}>
           <Text style={styles.subtitle}>Rs. </Text>
-          <Text style={styles.heading}>23,480</Text>
+          <Text style={styles.heading}>
+            {user?.balance ? user?.balance?.toLocaleString() : "--"}
+          </Text>
         </View>
       </View>
       <View style={styles.assetContainer}>

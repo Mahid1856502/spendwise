@@ -1,12 +1,19 @@
 import { StyleSheet, TextInput } from "react-native";
 // import { gloablStyles } from "../../styles/globalStyles";
 
-const UnderlineInput = ({ placeholder = "", secureTextEntry = false }) => {
+const UnderlineInput = ({
+  placeholder = "",
+  secureTextEntry = false,
+  value,
+  onChangeText,
+}) => {
   return (
     <TextInput
       style={styles.input}
       placeholder={placeholder}
       secureTextEntry={secureTextEntry}
+      onChangeText={onChangeText}
+      value={value}
     />
   );
 };

@@ -4,19 +4,39 @@ import RoundSearchBar from "../components/SearchBar";
 import GenericList from "../components/GenericList";
 import GenericButton from "../components/Button";
 import { FaPlus } from "react-icons/fa";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { deleteCategory, fetchCategories } from "../../services/categories";
+import { ActivityIndicator } from "react-native-web";
 
 export default function List({ navigation }) {
-  const payees = [
-    {
-      label: "Medical Health",
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: deleteCategory,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["categories"],
+      });
     },
-    {
-      label: "Education",
-    },
-    {
-      label: "Entertainment",
-    },
-  ];
+  });
+
+  const { data: categories, isLoading } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+  });
+
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
+  const handleDelete = (id) => {
+    debugger;
+    mutation.mutate(id);
+  };
   return (
     <View style={styles.container}>
       <RoundSearchBar placeholder={"Search categories"} />
@@ -34,10 +54,19 @@ export default function List({ navigation }) {
         </GenericButton>
       </View>
       <GenericList
-        data={payees}
-        navigation={navigation}
-        editable={true}
-        onEdit={() => navigation.navigate("addUpdateCategory")}
+        data={
+          categories?.length > 0
+            ? categories?.map((category) => ({
+                id: category.id,
+                label: category.name,
+              }))
+            : []
+        }
+        // navigation={navigation}
+        editable={false}
+        deleteable
+        onDelete={handleDelete}
+        // onEdit={() => navigation.navigate("addUpdateCategory")}
       />
     </View>
   );
